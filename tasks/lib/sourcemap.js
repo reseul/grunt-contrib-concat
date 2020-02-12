@@ -154,6 +154,17 @@ exports.init = function(grunt) {
         // If sourceMapPath is relative, expand relative to the file
         // referring to it.
         sourceMapPath = path.resolve(path.dirname(filename), sourceMapFile);
+        
+        if (!grunt.file.exists(sourceMapPath)) {
+          this._forEachTokenPosition(src, relativeFilename, this.addMapping);
+
+          if (this.options.sourceMapStyle !== 'link') {
+            this.generator.setSourceContent(relativeFilename, src);
+          }
+
+          return src;
+        }
+
         sourceContent = grunt.file.read(sourceMapPath);
       }
       var sourceMapDir = path.dirname(sourceMapPath);

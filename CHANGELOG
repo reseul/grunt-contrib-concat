@@ -1,3 +1,7 @@
+v1.0.2:
+  date: 2020-02-12
+  changes:
+    - Don't break if a source map file is missing.
 v1.0.1:
   date: 2016-04-20
   changes:
